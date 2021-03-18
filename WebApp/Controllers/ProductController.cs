@@ -19,11 +19,21 @@ namespace WebApp.Controllers
             _repository = repository;
         }
 
-        public IActionResult List()
+        public IActionResult ListAdmin()
         {
             return View(ProductViewModel.GetProducts(_repository));
         }
+        
+        public IActionResult List(Guid? id)
+        {
+            return View(ProductViewModel.GetProducts(_repository, id));
+        }
         public IActionResult Details(Guid Id)
+        {
+            return View(ProductViewModel.GetProductById(_repository, Id));
+        }
+
+        public IActionResult DetailsAdmin(Guid Id)
         {
             return View(ProductViewModel.GetProductById(_repository, Id));
         }
@@ -34,7 +44,7 @@ namespace WebApp.Controllers
                 return View(model);
 
             _repository.AddItemAsync(model);
-            return Redirect("List");
+            return Redirect("ListAdmin");
         }
        
     }

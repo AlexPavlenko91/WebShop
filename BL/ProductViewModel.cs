@@ -56,7 +56,8 @@ namespace BL
                     .Where(item => item.CategoryId == catId)
                     .Include(item => item.Category)
                     .Include(item => item.Assets)
-                    .Select(item => new ProductViewModel(item));
+                    .Select(item => new ProductViewModel(item))
+                    .OrderBy(item => item.CategoryName);
             else
                 return (repository.AllItems as DbSet<Product>)
                     .Include(item => item.Category)
