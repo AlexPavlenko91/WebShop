@@ -23,7 +23,7 @@ namespace Repositories
         public async Task<int> AddItemAsync(T value)
         {
             await _context.Set<T>().AddAsync(value);
-            return _context.SaveChanges();// SaveChangesAsync();
+            return _context.SaveChanges(); // SaveChangesAsync();
         }
 
         public async Task<int> AddItemsAsync(IEnumerable<T> items)
@@ -32,22 +32,19 @@ namespace Repositories
             return await SaveChangesAsync();
         }
 
-        public async Task<bool> ChangeItemAsync(T val)
+        public async Task<bool> ChangeItemAsync(T entity)
         {
-            T candidate = _context.Set<T>().FirstOrDefault(i=>i.Id==val.Id);
-            if (candidate == null) 
-                return false;
-            candidate = val;
-            return await SaveChangesAsync()>0;
+            _context.Entry(entity).State = EntityState.Modified;
+            return await SaveChangesAsync() > 0;
         }
 
         public async Task<bool> DeleteItemAsync(Guid id)
         {
             T candidate = _context.Set<T>().FirstOrDefault(i => i.Id == id);
-            
+
             if (candidate == null)
                 return false;
-            
+
             _context.Set<T>().Remove(candidate);
 
             return await SaveChangesAsync() > 0;
@@ -57,10 +54,12 @@ namespace Repositories
         {
             return await _context.Set<T>().FirstOrDefaultAsync(i => i.Id == id);
         }
+
         public async Task<List<T>> ToListAsync()
         {
             return await AllItems.ToListAsync();
         }
+
         public async Task<int> SaveChangesAsync()
         {
             try
@@ -74,6 +73,5 @@ namespace Repositories
                 return -1;
             }
         }
-
     }
 }

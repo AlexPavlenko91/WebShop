@@ -5,11 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>List</h1>
+<h1>Products admin</h1>
+<div class="prodAdmin-top">
+    <div>
+    <input class="btn btn-secondary" type="button" value="Create new Product" onclick="location.href='@Url.Action("Create", "Product")'" />
+        @* <a asp-action="Create">Create New Product</a> *@
+    </div>
+    <div>
+            <input class="btn btn-secondary" type="button" value="Categories" onclick="location.href='@Url.Action("List", "Category")'" />
+        @* <a asp-controller="Category" asp-action="List">Categories</a> *@
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>

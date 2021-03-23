@@ -112,7 +112,7 @@ body {
 }
 
     .product-container span {
-        font-family: verdana
+        font-family: verdana, serif;
     }
 
     .product-container img {
@@ -127,12 +127,24 @@ body {
 .prod, .prod:hover {
     text-decoration: none !important;
     color: black;
+    font-weight: bold;
 }
-.bascet {
+.basket {
     width: 22px;
     height: 20px;
 }
 
-    .bascet:hover {
+    .basket:hover {
         cursor: pointer;
     }
+.prodAdmin-top{
+    display: inline-grid;
+}
+
+#img-logo {
+    height: 77px!important; !important; !important;
+    width: 77px!important; !important; !important;
+}
+.bg-light{
+    background-color: #6c757d!important;
+}
