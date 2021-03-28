@@ -12,11 +12,11 @@ namespace BL
 {
     public class CategoryViewModel
     {
-        public Guid Id { get; }
+        public Guid Id { get; set; }
 
         [Required] public string Name { get; set; }
 
-        public List<Product> Products { get; }
+        public List<Product> Products { get; set; }
 
         public CategoryViewModel(){}
 
@@ -43,11 +43,11 @@ namespace BL
         }
         public static implicit operator Category(CategoryViewModel model)
         {
-            return new Category
-            {
-                Id = model.Id,
-                Name = model.Name
-            };
+                return new Category
+                {
+                    Id = model.Id,
+                    Name = model.Name
+                };
         }
         public static bool Edited(ICategoryRepository repository, Category category)
         {
@@ -63,7 +63,7 @@ namespace BL
             return Name == null;
         }
         
-        public static bool DeleteProduct(ICategoryRepository repository, Guid id)
+        public static bool DeleteCategory(ICategoryRepository repository, Guid id)
         {
             return (repository.DeleteItemAsync(id)).IsCompletedSuccessfully;
         }

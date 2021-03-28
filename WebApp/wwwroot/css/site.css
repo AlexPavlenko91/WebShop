@@ -109,6 +109,7 @@ body {
     border: groove;
     border-radius: 10px;
     text-align: center;
+    background-color: #BEBCBB;
 }
 
     .product-container span {
@@ -142,9 +143,21 @@ body {
 }
 
 #img-logo {
-    height: 77px!important; !important; !important;
-    width: 77px!important; !important; !important;
+    height: 77px!important; 
+    width: 77px!important;
+    border-radius: 100%; !important;
 }
 .bg-light{
     background-color: #6c757d!important;
 }
+.productsLine{
+    display: inline-flex !important;
+}
+
+/*.product-img{*/
+/*    width: 218px;*/
+/*    height: 250px;*/
+/*}*/
+/*.img-fluid{*/
+/*    height: inherit;*/
+/*}*/

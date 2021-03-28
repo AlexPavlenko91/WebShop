@@ -31,7 +31,7 @@ namespace WebApp.Controllers
                 return View(model);
 
             _repository.AddItemAsync(model);
-            return Redirect("List");
+            return Redirect("ListAdmin");
         }
 
         public IActionResult Edit(Guid? Id)
@@ -42,19 +42,27 @@ namespace WebApp.Controllers
                 return View(CategoryViewModel.GetCategoryById(_repository, Id.Value));
             } return NotFound(); 
         }
-        public IActionResult EditAccept(CategoryViewModel cat)
+        public IActionResult EditAccept([FromForm]CategoryViewModel cat)
         {
-            //_repository.ChangeItemAsync(cat);
-            CategoryViewModel.Update(_repository,cat);
-            return Redirect("List");
+            if (cat!= null && cat.Id != new Guid())
+            {
+                //_repository.ChangeItemAsync(cat);
+                CategoryViewModel.Update(_repository,cat);
+            }
+            return Redirect("ListAdmin");
         }
         
         public IActionResult Delete(Guid? id)
         {
             if (id.HasValue)
             {
-                return View(CategoryViewModel.DeleteProduct(_repository, (Guid)id));
+                return View(CategoryViewModel.DeleteCategory(_repository, (Guid)id));
             } return NotFound(); 
+        }
+
+        public IActionResult ListAdmin()
+        {
+            return View(CategoryViewModel.GetCategories(_repository));
         }
     }
 }

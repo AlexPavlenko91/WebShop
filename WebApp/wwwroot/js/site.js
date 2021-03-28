@@ -8,14 +8,12 @@ $(document).ready(function () {
     $('.carousel').carousel();
 
     $("#uploadBtn").on("click", function () {
-
         let formData = new FormData();
         let fileList = $("#file")[0].files;
 
         for (key in fileList) {
             formData.append("file", fileList[key]);
         }
-
         $.ajax({
             url: "/api/Asset",
             type: "post",
@@ -45,7 +43,6 @@ $(document).ready(function () {
                     $(".carousel-inner .carousel-item").first().addClass("active");
                 }
             }
-
         })
     })
 });
